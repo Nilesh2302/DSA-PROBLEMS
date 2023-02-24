@@ -18,7 +18,7 @@ class Solution:
             elif k<Arr[mid]:
                 e = mid-1
                 
-        return s        
+        return e+1        
                 
 
 
