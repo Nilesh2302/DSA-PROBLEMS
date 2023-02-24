@@ -1,12 +1,32 @@
 # your task is to complete this function
 # function should return index to the any valid peak element
-class Solution:   
-    def peakElement(self,arr, n):
-        # Code here
-        for i in range(n):
-            if (i==0 or arr[i]>=arr[i-1] ) and (i==n-1 or arr[i]>=arr[i+1]):
-                return i
+# soln 1: linear traversal
+# class Solution:   
+#     def peakElement(self,arr, n):
+#         # Code here
+#         for i in range(n):
+#             if (i==0 or arr[i]>=arr[i-1] ) and (i==n-1 or arr[i]>=arr[i+1]):
+#                 return i
 
+
+# slon2 : using binary search
+def peakElement(self,arr, n):
+        # Code here
+        s = 0
+        e = n-1
+        
+        
+        while s<=e:
+            mid = (s+e)//2
+            if (mid==0 or arr[mid]>=arr[mid-1]) and (mid==n-1 or arr[mid]>=arr[mid+1]):
+                return mid
+            
+            elif mid>0 and  arr[mid]<arr[mid-1]:
+                e = mid-1
+                
+            
+            elif mid<n-1 and arr[mid]<arr[mid+1]:
+                s = mid+1
 
 #{ 
  # Driver Code Starts
