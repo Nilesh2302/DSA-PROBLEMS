@@ -1,0 +1,20 @@
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        
+        stack = []
+        res = []
+        while True:
+            if root:
+                stack.append(root)
+                root = root.left
+            
+            elif stack:
+                temp=stack.pop()
+                res.append(temp.val)
+                root = temp.right
+            
+            else:
+                break
+        return res
