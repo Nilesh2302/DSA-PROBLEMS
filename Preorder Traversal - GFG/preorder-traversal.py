@@ -12,20 +12,31 @@ class Node:
 '''
 #Function to return a list containing the preorder traversal of the tree.
 def preorder(root):
-    if not root:
-        return []
-
-    stack = [root]
     res = []
-    while stack:
-        node = stack.pop()
-        res.append(node.data)
-        if node.right:
-            stack.append(node.right)   #we take right side first because we pop from last .. preorder -> root-left-right
-        if node.left:
-            stack.append(node.left)
+    curr = root
+    while curr:
+        if curr.left is None:
+            res.append(curr.data)
+            curr = curr.right
+        
+        else:
+            pre = curr.left
+            while pre.right and pre.right!=curr:
+                pre = pre.right
+                
+            if pre.right is None:
+                pre.right = curr
+                res.append(curr.data)
+                curr = curr.left
+            
+            else:
+                pre.right = None
+                curr = curr.right
     
-    return res        
+    return res            
+    
+   
+    # code here
 
 
 #{ 
