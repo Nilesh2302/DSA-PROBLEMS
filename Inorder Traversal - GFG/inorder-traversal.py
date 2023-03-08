@@ -14,22 +14,24 @@ class Node:
 class Solution:
     def InOrder(self,root):
         # code here
-        res = []
         if not root:
-            return res
+            return []
         
         stack = []
-        curr = root
-        
-        while curr or stack:
-            while curr:
-                stack.append(curr)
-                curr = curr.left
-            curr = stack.pop()
-            res.append(curr.data)
-            curr = curr.right
-        
-        return res     
+        res = []
+        while True:
+            if root:
+                stack.append(root)
+                root = root.left
+            
+            elif stack:
+                temp=stack.pop()
+                res.append(temp.data)
+                root = temp.right
+            
+            else:
+                break
+        return res
 
 
 #{ 
