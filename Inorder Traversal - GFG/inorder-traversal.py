@@ -13,25 +13,43 @@ class Node:
 #Function to return a list containing the inorder traversal of the tree. 
 class Solution:
     def InOrder(self,root):
-        # code here
-        if not root:
-            return []
-        
-        stack = []
         res = []
-        while True:
-            if root:
-                stack.append(root)
-                root = root.left
+        curr = root
+        while curr:
+            # case no. 1
+            if curr.left is None:
+                res.append(curr.data)
+                curr = curr.right
             
-            elif stack:
-                temp=stack.pop()
-                res.append(temp.data)
-                root = temp.right
-            
+            # case 2 means they have a left subtree
             else:
-                break
+                #if subtree the find its rightmost node and connect it with
+                pre = curr.left
+                # for finding rightmost node
+                while pre.right and pre.right!=curr:  #this pre!=right for already visited condition
+                    pre = pre.right
+                    
+                #now once rightmost node found
+                #there are also two cases
+                # case 1 : prev.right == None then create a thread and move to left
+                if pre.right is None:
+                    pre.right = curr
+                    curr = curr.left
+                
+                
+                #case 2: it is already visited so cut the thread beacuse we came back that position so cut that thread push that data and move towards right.
+                else:
+                    pre.right = None
+                    res.append(curr.data)
+                    curr = curr.right
+        
         return res
+                    
+                    
+                    
+                
+
+
 
 
 #{ 
