@@ -22,17 +22,19 @@ def postOrder(root):
     
     while s1:
         t = s1.pop()
-        s2.append(t)
+        s2.append(t.data)
         if t.left:
             s1.append(t.left)
         
         if t.right:
             s1.append(t.right)
     
-    while s2:
-        res.append(s2.pop().data)
+    # while s2:
+    #     res.append(s2.pop().data)
     
-    return res
+    # return res
+    s2.reverse()
+    return s2
 
 #{ 
  # Driver Code Starts
