@@ -13,23 +13,26 @@ class Node:
 #Function to return a list containing the postorder traversal of the tree.
 def postOrder(root):
     # code here
-    if not root:
+    if  not root:
         return []
-    stack = [(root, False)]
-    result = []
-    while stack:
-        node, visited = stack.pop()
-        if visited:
-            result.append(node.data)
-        else:
-            stack.append((node, True))
-            if node.right:
-                stack.append((node.right, False))
-            if node.left:
-                stack.append((node.left, False))
-    return result
-
-
+    
+    s1 = [root]
+    s2 = []
+    res = []
+    
+    while s1:
+        t = s1.pop()
+        s2.append(t)
+        if t.left:
+            s1.append(t.left)
+        
+        if t.right:
+            s1.append(t.right)
+    
+    while s2:
+        res.append(s2.pop().data)
+    
+    return res
 
 #{ 
  # Driver Code Starts
