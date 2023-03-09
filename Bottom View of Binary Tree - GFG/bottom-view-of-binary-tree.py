@@ -1,37 +1,41 @@
 #User function Template for python3
+from collections import defaultdict
 
 class Solution:
     def bottomView(self, root):
-        # code here
         if not root:
-            return []
-    
-        # Create a queue of pairs with node and its index
-        queue = deque([(root, 0)])
-        # Create a map to store the line and the node
+            return
+        
+        #create a queue for storing pairs(node,line)
+        queue =[(root,0)]
+        
+        # create a map for storing pairs(line,node)
         line_map = defaultdict(int)
-    
-        # Traverse through the tree in level order
+        
         while queue:
-            # Store the node and its line number in separate variables
-            node, line = queue.popleft()
-    
-            # Update the map with the current node's value for its line
+            #just poping and assigning
+            node,line = queue.pop(0)
+            
+            #update the map with just line->node
             line_map[line] = node.data
-    
-            # Store the left child and its line number in the queue
+            
+            # store the left child and its line number in queue
             if node.left:
-                queue.append((node.left, line - 1))
-    
-            # Store the right child and its line number in the queue
+                queue.append((node.left,line-1))
+                
+            # store the left child and its line number in queue
             if node.right:
-                queue.append((node.right, line + 1))
-    
-        # Sort the line map by the line numbers in ascending order
-        sorted_map = sorted(line_map.items(), key=lambda x: x[0])
-    
-        # Return a list of the bottom view nodes
-        return [data for line, data in sorted_map]
+                queue.append((node.right,line+1))
+        
+        # sort the map by line number
+        sorted_map = sorted(line_map.items(),key=lambda x: x[0])
+        
+        #just returing the bottom view of the tree
+        return [val for line,val in sorted_map]
+            
+                
+            
+            
 
 
 #{ 
